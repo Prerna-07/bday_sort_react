@@ -1,5 +1,7 @@
 import React from 'react';
 import UserService from '../service/UseService';
+import Sortbydate from '../sortdata/Sortbydate';
+import Sortdata from '../sortdata/Sortdata';
 
 class UserComponent extends React.Component {
 
@@ -13,9 +15,10 @@ class UserComponent extends React.Component {
     componentDidMount(){
         UserService.getUsers().then((response) => {
             this.setState({ users: response.data})
+
         });
     }
-
+   
     render (){
         return (
             <div>
@@ -24,9 +27,9 @@ class UserComponent extends React.Component {
                     <thead>
                         <tr>
 
-                            <td> Id</td>
+                            
                             <td> Name</td>
-                            <td> Age</td>
+                            <td> dob</td>
                          
                         </tr>
 
@@ -36,9 +39,9 @@ class UserComponent extends React.Component {
                             this.state.users.map(
                                 user => 
                                 <tr key = {user.id}>
-                                     <td> {user.id}</td>   
+                                     
                                      <td> {user.name}</td>   
-                                     <td> {user.age}</td>   
+                                     <td> {user.dob}</td>   
                                        
                                 </tr>
                             )
@@ -46,8 +49,13 @@ class UserComponent extends React.Component {
 
                     </tbody>
                 </table>
-
+                <p>Sort by name</p>
+                <Sortdata></Sortdata>
+                <p >Sort by age</p>
+                <Sortbydate></Sortbydate>
+                
             </div>
+            
 
         )
     }
